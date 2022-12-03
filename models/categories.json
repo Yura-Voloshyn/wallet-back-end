@@ -1,10 +1,12 @@
 [
-  { "id": "1", "name": "Main" },
-  { "id": "2", "name": "Food" },
-  { "id": "3", "name": "Auto" },
-  { "id": "4", "name": "Development" },
-  { "id": "5", "name": "Children" },
-  { "id": "6", "name": "House" },
+  { "id": "1", "name": "Main expenses" },
+  { "id": "2", "name": "Products" },
+  { "id": "3", "name": "Car" },
+  { "id": "4", "name": "Self care" },
+  { "id": "5", "name": "Child care" },
+  { "id": "6", "name": "Household products" },
   { "id": "7", "name": "Education" },
-  { "id": "8", "name": "Reset" }
+  { "id": "8", "name": "Leisure" },
+  { "id": "9", "name": "Other expenses" },
+  { "id": "10", "name": "Entertainment" }
 ]
