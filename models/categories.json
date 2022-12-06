@@ -1,12 +1,12 @@
 [
-  { "id": "1", "name": "Main expenses" },
-  { "id": "2", "name": "Products" },
-  { "id": "3", "name": "Car" },
-  { "id": "4", "name": "Self care" },
-  { "id": "5", "name": "Child care" },
-  { "id": "6", "name": "Household products" },
-  { "id": "7", "name": "Education" },
-  { "id": "8", "name": "Leisure" },
-  { "id": "9", "name": "Other expenses" },
-  { "id": "10", "name": "Entertainment" }
+  { "id": "1", "name": "Main expenses", "color": "#FED057" },
+  { "id": "2", "name": "Products", "color": "#FFD8D0" },
+  { "id": "3", "name": "Car", "color": "#FD9498" },
+  { "id": "4", "name": "Self care", "color": "#C5BAFF" },
+  { "id": "5", "name": "Child care", "color": "#6E78E8" },
+  { "id": "6", "name": "Household products", "color": "#4A56E2" },
+  { "id": "7", "name": "Education", "color": "#81E1FF" },
+  { "id": "8", "name": "Leisure", "color": "#24CCA7" },
+  { "id": "9", "name": "Other expenses", "color": "#00AD84" },
+  { "id": "10", "name": "Entertainment", "color": "#128f74" }
 ]
