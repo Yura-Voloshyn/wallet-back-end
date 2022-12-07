@@ -13,10 +13,10 @@
   "produces": ["application/json"],
   "servers": [
     {
-      "url": "https://wallet-7lfhtkjr6-yura-voloshyn.vercel.app/"
+      "url": "https://wallet-jet.vercel.app"
     },
     {
-      "url": "http://localhost:3030/"
+      "url": "http://localhost:3030"
     }
   ],
   "tags": [
@@ -30,7 +30,7 @@
     }
   ],
   "paths": {
-    "api/auth/register": {
+    "/api/auth/register": {
       "post": {
         "tags": ["Auth"],
         "summary": "User registration",
@@ -68,7 +68,7 @@
         }
       }
     },
-    "api/auth/login": {
+    "/api/auth/login": {
       "post": {
         "tags": ["Auth"],
         "summary": "User login",
@@ -111,7 +111,7 @@
         }
       }
     },
-    "api/auth/current": {
+    "/api/auth/current": {
       "get": {
         "tags": ["Auth"],
         "summary": "Check current user",
@@ -143,7 +143,7 @@
         }
       }
     },
-    "api/auth/logout": {
+    "/api/auth/logout": {
       "get": {
         "tags": ["Auth"],
         "summary": "User logout ",
@@ -261,7 +261,7 @@
               "balance": {
                 "type": "integer",
                 "description": "User's balance",
-                "example": "100"
+                "example": 100
               },
               "name": {
                 "type": "string",
@@ -293,7 +293,7 @@
               "balance": {
                 "type": "integer",
                 "description": "User's balance",
-                "example": "5050"
+                "example": "100"
               },
               "name": {
                 "type": "string",
