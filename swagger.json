@@ -168,6 +168,130 @@
           }
         }
       }
+    },
+    "/api/transactions": {
+      "post": {
+        "tags": ["Transactions"],
+        "summary": "Create a transaction",
+        "parameters": [],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {
+          "description": "Transaction's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionCreateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          }
+        }
+      },
+      "get": {
+        "tags": ["Transactions"],
+        "summary": "Get user transactions",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Number of pagination page"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Number of transaction count in page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionsGetResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/transactions/categories": {
+      "get": {
+        "tags": ["Transactions"],
+        "summary": "Get categories list",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoriesResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
@@ -303,6 +427,253 @@
             }
           }
         }
+      },
+      "TransactionCreateRequest": {
+        "type": "object",
+        "required": ["date", "type", "sum", "category", "comment"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Transaction date",
+            "example": "18.08.2020"
+          },
+          "type": {
+            "type": "Boolean",
+            "description": "Transaction type",
+            "example": false
+          },
+          "sum": {
+            "type": "integer",
+            "description": "Transaction sum",
+            "example": 150
+          },
+          "category": {
+            "type": "string",
+            "description": "Category name",
+            "example": "Education"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Transaction comment",
+            "example": "books"
+          }
+        }
+      },
+      "TransactionCreateResponse": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Transaction date",
+            "example": "18.08.2020"
+          },
+          "type": {
+            "type": "Boolean",
+            "description": "Transaction type",
+            "example": false
+          },
+          "sum": {
+            "type": "integer",
+            "description": "Transaction sum",
+            "example": 150
+          },
+          "category": {
+            "type": "string",
+            "description": "Category name",
+            "example": "Education"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Transaction comment",
+            "example": "books"
+          },
+          "year": {
+            "type": "string",
+            "description": "Transaction year",
+            "example": "2020"
+          },
+          "month": {
+            "type": "string",
+            "description": "Transaction month",
+            "example": "08"
+          },
+          "owner": {
+            "type": "string",
+            "description": "owner id",
+            "example": "638fd2a65f20c321fe050142"
+          },
+          "balance": {
+            "type": "integer",
+            "description": "User's balance after transaction",
+            "example": 100
+          }
+        }
+      },
+      "TransactionsGetResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "Transaction id",
+              "example": "63908e7006667ca937cc3ed6"
+            },
+            "date": {
+              "type": "string",
+              "description": "Transaction date",
+              "example": "18.08.2020"
+            },
+            "type": {
+              "type": "Boolean",
+              "description": "Transaction type",
+              "example": false
+            },
+            "category": {
+              "type": "string",
+              "description": "Transaction category",
+              "example": "Education"
+            },
+            "comment": {
+              "type": "string",
+              "description": "User comment for transaction",
+              "example": "books "
+            },
+            "sum": {
+              "type": "integer",
+              "description": "Transaction sum",
+              "example": 150
+            },
+            "balance": {
+              "type": "integer",
+              "description": "User's balance",
+              "example": 100
+            },
+            "owner": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "User id",
+                  "example": "638fd2a65f20c321fe050142"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "User name",
+                  "example": "username"
+                },
+                "email": {
+                  "type": "string",
+                  "description": "User email",
+                  "format": "email",
+                  "example": "o1@gmail.com"
+                }
+              }
+            }
+          }
+        },
+        "example": [
+          {
+            "_id": "63908e7006667ca937cc3ed6",
+            "date": "18.08.2020",
+            "type": false,
+            "category": "Education",
+            "comment": "books",
+            "sum": 150,
+            "balance": 100,
+            "owner": {
+              "_id": "638fd2a65f20c321fe050142",
+              "name": "username",
+              "email": "o1@gmail.com"
+            }
+          },
+          {
+            "_id": "63908df106667ca937cc3ec7",
+            "date": "15.08.2020",
+            "type": true,
+            "category": "Income",
+            "comment": "my balance",
+            "sum": 250,
+            "balance": 250,
+            "owner": {
+              "_id": "638fd2a65f20c321fe050142",
+              "name": "username",
+              "email": "o1@gmail.com"
+            }
+          },
+          {
+            "_id": "63908db006667ca937cc3ec2",
+            "date": "10.08.2020",
+            "type": false,
+            "category": "Child care",
+            "comment": "toys",
+            "sum": 150,
+            "balance": 0,
+            "owner": {
+              "_id": "638fd2a65f20c321fe050142",
+              "name": "username",
+              "email": "o1@gmail.com"
+            }
+          },
+          {
+            "_id": "63908d5006667ca937cc3ebd",
+            "date": "30.07.2020",
+            "type": false,
+            "category": "Car",
+            "comment": "car wash",
+            "sum": 100,
+            "balance": 150,
+            "owner": {
+              "_id": "638fd2a65f20c321fe050142",
+              "name": "username",
+              "email": "o1@gmail.com"
+            }
+          },
+          {
+            "_id": "63908ce506667ca937cc3eb8",
+            "date": "28.07.2020",
+            "type": false,
+            "category": "Products",
+            "comment": "fish",
+            "sum": 50,
+            "balance": 250,
+            "owner": {
+              "_id": "638fd2a65f20c321fe050142",
+              "name": "username",
+              "email": "o1@gmail.com"
+            }
+          }
+        ]
+      },
+      "CategoriesResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Category id",
+              "example": "5"
+            },
+            "name": {
+              "type": "string",
+              "description": "Category name",
+              "example": "Child care"
+            },
+            "color": {
+              "type": "string",
+              "description": "Category color",
+              "example": "#6E78E8"
+            }
+          }
+        },
+        "example": [
+          { "id": "1", "name": "Main expenses", "color": "#FED057" },
+          { "id": "2", "name": "Products", "color": "#FFD8D0" },
+          { "id": "3", "name": "Car", "color": "#FD9498" },
+          { "id": "4", "name": "Self care", "color": "#C5BAFF" },
+          { "id": "5", "name": "Child care", "color": "#6E78E8" }
+        ]
       }
     },
     "securitySchemes": {
