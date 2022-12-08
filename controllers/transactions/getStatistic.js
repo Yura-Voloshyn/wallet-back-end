@@ -27,6 +27,7 @@ const getStatistic = async (req, res) => {
 
   const resultExpense = await Transaction.aggregate([
     {
+      $match: {
         owner: owner,
         type: false,
         month: month,
