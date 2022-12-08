@@ -6,6 +6,7 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 const options = {
   customCss: ".swagger-ui .topbar { display: none }",
+  customCssUrl: "/public/css/swagger-ui.css",
 };
 
 require("dotenv").config();
@@ -30,6 +31,8 @@ app.use(
   swaggerUi.serve,
   swaggerUi.setup(swaggerDocument, options)
 );
+
+app.use("/public/css", express.static("public/css"));
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
