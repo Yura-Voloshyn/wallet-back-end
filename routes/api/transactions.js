@@ -21,4 +21,11 @@ router.post(
 
 router.get("/categories", ctrlWrapper(ctrl.getCategories));
 
+router.post(
+  "/statistic",
+  authenticate,
+  validateBody(schemas.joiStatisticsSchema),
+  ctrlWrapper(ctrl.getStatistic)
+);
+
 module.exports = router;
