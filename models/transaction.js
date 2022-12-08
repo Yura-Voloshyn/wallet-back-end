@@ -10,11 +10,11 @@ const transactionSchema = new Schema(
       required: [true, "Date is required"]
     },
     month: {
-      type: Number
+      type: String
       // required: [true, "Month is required"]
     },
     year: {
-      type: Number
+      type: String
       // required: [true, "Year is required"]
     },
 
@@ -62,8 +62,14 @@ const joiTransactionSchema = Joi.object({
   sum: Joi.number().required()
 });
 
+const joiStatisticsSchema = Joi.object({
+  month: Joi.string().required(),
+  year: Joi.string().required()
+});
+
 const schemas = {
-  joiTransactionSchema
+  joiTransactionSchema,
+  joiStatisticsSchema
 };
 
 module.exports = {
