@@ -6,19 +6,24 @@ const addTransaction = async (req, res) => {
   const year = date.slice(6);
   const month = date.slice(3, 5);
 
-  const result = await Transaction.create({ ...req.body, owner });
+  const result = await Transaction.create({ ...req.body, month, year, owner });
 
   let newBalance;
 
   if (type) {
-    newBalance = balance + Number(sum);
+    newBalance = (balance + Number(sum)).toFixed(2);
   }
   if (!type) {
-    newBalance = balance - Number(sum);
+    newBalance = (balance - Number(sum)).toFixed(2);
   }
 
-  await User.findByIdAndUpdate(owner, { balance: newBalance });
-  await Transaction.findByIdAndUpdate(result, { balance: newBalance });
+  const currentSum = Number(sum).toFixed(2);
+
+  await User.findByIdAndUpdate(owner, { balance: newBalance, sum: currentSum });
+  await Transaction.findByIdAndUpdate(result, {
+    balance: newBalance,
+    sum: currentSum
+  });
 
   res.status(201).json({
     status: "success",
@@ -28,6 +33,7 @@ const addTransaction = async (req, res) => {
       year,
       month,
       owner,
+      sum: currentSum,
       balance: newBalance
     }
   });

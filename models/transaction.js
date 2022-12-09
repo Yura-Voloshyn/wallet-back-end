@@ -10,11 +10,11 @@ const transactionSchema = new Schema(
       required: [true, "Date is required"]
     },
     month: {
-      type: String
+      type: Number
       // required: [true, "Month is required"]
     },
     year: {
-      type: String
+      type: Number
       // required: [true, "Year is required"]
     },
 
@@ -34,6 +34,7 @@ const transactionSchema = new Schema(
     },
     sum: {
       type: Number,
+      min: 0.01,
       required: [true, "Sum is required"]
     },
     balance: {
@@ -59,12 +60,12 @@ const joiTransactionSchema = Joi.object({
   type: Joi.boolean().required(),
   category: Joi.string().required(),
   comment: Joi.string().min(1).required(),
-  sum: Joi.number().required()
+  sum: Joi.number().min(0.01).required()
 });
 
 const joiStatisticsSchema = Joi.object({
-  month: Joi.string().required(),
-  year: Joi.string().required()
+  month: Joi.number().required(),
+  year: Joi.number().required()
 });
 
 const schemas = {
