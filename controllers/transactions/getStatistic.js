@@ -2,9 +2,9 @@ const { Transaction } = require("../../models");
 
 const getStatistic = async (req, res) => {
   const { _id: owner } = req.user;
-  //   const { month, year } = req.body;
+  const { month, year } = req.body;
   // const { month, year } = req.params;
-  const { month, year } = req.query;
+  // const { month, year } = req.query;
 
   const resultIncome = await Transaction.aggregate([
     {
