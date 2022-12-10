@@ -3,21 +3,23 @@ const { Transaction, User } = require("../../models");
 const addTransaction = async (req, res) => {
   const { _id: owner, balance } = req.user;
   const { sum, type, date } = req.body;
-  const year = date.slice(6);
-  const month = date.slice(3, 5);
+  // const year = date.slice(6);
+  // const month = date.slice(3, 5);
+  const year = Number(date.slice(6));
+  const month = Number(date.slice(3, 5));
 
   const result = await Transaction.create({ ...req.body, month, year, owner });
 
   let newBalance;
 
   if (type) {
-    newBalance = (balance + Number(sum)).toFixed(2);
+    newBalance = balance + Number(sum).toFixed(2);
   }
   if (!type) {
-    newBalance = (balance - Number(sum)).toFixed(2);
+    newBalance = balance - Number(sum).toFixed(2);
   }
 
-  const currentSum = Number(sum).toFixed(2);
+  const currentSum = Number(sum.toFixed(2));
 
   await User.findByIdAndUpdate(owner, { balance: newBalance, sum: currentSum });
   await Transaction.findByIdAndUpdate(result, {
