@@ -292,6 +292,49 @@
           }
         }
       }
+    },
+    "/api/transactions/statistic": {
+      "post": {
+        "tags": ["Transactions"],
+        "summary": "Get user statistics",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Statistics object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetStatisticRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStatisticResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
@@ -341,7 +384,7 @@
                 "example": "username"
               },
               "balance": {
-                "type": "integer",
+                "type": "number",
                 "description": "User's balance",
                 "example": 0
               },
@@ -383,7 +426,7 @@
             "type": "object",
             "properties": {
               "balance": {
-                "type": "integer",
+                "type": "number",
                 "description": "User's balance",
                 "example": 100
               },
@@ -415,7 +458,7 @@
                 "example": "o1@gmail.com"
               },
               "balance": {
-                "type": "integer",
+                "type": "number",
                 "description": "User's balance",
                 "example": "100"
               },
@@ -443,7 +486,7 @@
             "example": false
           },
           "sum": {
-            "type": "integer",
+            "type": "number",
             "description": "Transaction sum",
             "example": 150
           },
@@ -473,7 +516,7 @@
             "example": false
           },
           "sum": {
-            "type": "integer",
+            "type": "number",
             "description": "Transaction sum",
             "example": 150
           },
@@ -488,12 +531,12 @@
             "example": "books"
           },
           "year": {
-            "type": "string",
+            "type": "integer",
             "description": "Transaction year",
             "example": "2020"
           },
           "month": {
-            "type": "string",
+            "type": "integer",
             "description": "Transaction month",
             "example": "08"
           },
@@ -524,6 +567,16 @@
               "description": "Transaction date",
               "example": "18.08.2020"
             },
+            "year": {
+              "type": "integer",
+              "description": "Transaction year",
+              "example": "2020"
+            },
+            "month": {
+              "type": "integer",
+              "description": "Transaction month",
+              "example": "08"
+            },
             "type": {
               "type": "Boolean",
               "description": "Transaction type",
@@ -540,12 +593,12 @@
               "example": "books "
             },
             "sum": {
-              "type": "integer",
+              "type": "number",
               "description": "Transaction sum",
               "example": 150
             },
             "balance": {
-              "type": "integer",
+              "type": "number",
               "description": "User's balance",
               "example": 100
             },
@@ -576,6 +629,8 @@
           {
             "_id": "63908e7006667ca937cc3ed6",
             "date": "18.08.2020",
+            "month": 8,
+            "year": 2020,
             "type": false,
             "category": "Education",
             "comment": "books",
@@ -590,6 +645,8 @@
           {
             "_id": "63908df106667ca937cc3ec7",
             "date": "15.08.2020",
+            "month": 8,
+            "year": 2020,
             "type": true,
             "category": "Income",
             "comment": "my balance",
@@ -604,6 +661,8 @@
           {
             "_id": "63908db006667ca937cc3ec2",
             "date": "10.08.2020",
+            "month": 8,
+            "year": 2020,
             "type": false,
             "category": "Child care",
             "comment": "toys",
@@ -618,6 +677,8 @@
           {
             "_id": "63908d5006667ca937cc3ebd",
             "date": "30.07.2020",
+            "month": 7,
+            "year": 2020,
             "type": false,
             "category": "Car",
             "comment": "car wash",
@@ -632,6 +693,8 @@
           {
             "_id": "63908ce506667ca937cc3eb8",
             "date": "28.07.2020",
+            "month": 7,
+            "year": 2020,
             "type": false,
             "category": "Products",
             "comment": "fish",
@@ -674,6 +737,60 @@
           { "id": "4", "name": "Self care", "color": "#C5BAFF" },
           { "id": "5", "name": "Child care", "color": "#6E78E8" }
         ]
+      },
+      "GetStatisticRequest": {
+        "type": "object",
+        "required": ["month", "year"],
+        "properties": {
+          "month": {
+            "type": "integer",
+            "description": "Transaction month",
+            "example": 8
+          },
+          "year": {
+            "type": "integer",
+            "description": "Transaction year",
+            "example": 2020
+          }
+        }
+      },
+      "GetStatisticResponse": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string",
+            "description": "owner id",
+            "example": "638fd2a65f20c321fe050142"
+          },
+          "totalIncome": {
+            "type": "number",
+            "description": "Income for the month",
+            "example": "3439.78"
+          },
+          "totalExpense": {
+            "type": "number",
+            "description": "Expense for the month ",
+            "example": "402695.6"
+          },
+          "totalCategories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "Category name",
+                  "example": "Leisure"
+                },
+                "totalSum": {
+                  "type": "number",
+                  "description": "amount by category ",
+                  "example": "110"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "securitySchemes": {

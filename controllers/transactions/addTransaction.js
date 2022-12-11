@@ -13,10 +13,10 @@ const addTransaction = async (req, res) => {
   let newBalance;
 
   if (type) {
-    newBalance = balance + Number(sum).toFixed(2);
+    newBalance = Number(balance) + Number(sum.toFixed(2));
   }
   if (!type) {
-    newBalance = balance - Number(sum).toFixed(2);
+    newBalance = Number(balance) - Number(sum.toFixed(2));
   }
 
   const currentSum = Number(sum.toFixed(2));
