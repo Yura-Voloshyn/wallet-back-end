@@ -11,13 +11,10 @@ const transactionSchema = new Schema(
     },
     month: {
       type: Number
-      // required: [true, "Month is required"]
     },
     year: {
       type: Number
-      // required: [true, "Year is required"]
     },
-
     type: {
       type: Boolean,
       required: [true, "Type is required"]
