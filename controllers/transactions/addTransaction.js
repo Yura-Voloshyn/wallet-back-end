@@ -21,9 +21,12 @@ const addTransaction = async (req, res) => {
 
   const currentSum = Number(sum.toFixed(2));
 
-  await User.findByIdAndUpdate(owner, { balance: newBalance, sum: currentSum });
+  await User.findByIdAndUpdate(owner, {
+    balance: newBalance.toFixed(2),
+    sum: currentSum
+  });
   await Transaction.findByIdAndUpdate(result, {
-    balance: newBalance,
+    balance: newBalance.toFixed(2),
     sum: currentSum
   });
 

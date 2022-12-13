@@ -16,13 +16,13 @@ const userSchema = new Schema(
       minLength: 1,
       maxLength: 12,
       match: nameRegexp,
-      required: [true, "Name is required"],
+      required: [true, "Name is required"]
     },
     password: {
       type: String,
       minLength: 6,
       match: passwordRegexp,
-      required: [true, "Password is required"],
+      required: [true, "Password is required"]
     },
     email: {
       type: String,
@@ -30,17 +30,17 @@ const userSchema = new Schema(
       maxLength: 63,
       required: [true, "Email is required"],
       match: emailRegexp,
-      unique: true,
+      unique: true
     },
     balance: {
       type: Number,
       required: true,
-      default: 0,
+      default: 0
     },
     token: {
       type: String,
-      default: "",
-    },
+      default: ""
+    }
   },
   { versionKey: false, timestamps: true }
 );
@@ -52,20 +52,20 @@ const User = model("user", userSchema);
 const registerSchema = Joi.object({
   name: Joi.string().pattern(nameRegexp).min(1).max(12).required(),
   email: Joi.string().pattern(emailRegexp).min(10).max(63).required(),
-  password: Joi.string().pattern(passwordRegexp).min(6).max(16).required(),
+  password: Joi.string().pattern(passwordRegexp).min(6).max(12).required()
 });
 
 const loginSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).min(10).max(63).required(),
-  password: Joi.string().min(6).max(16).required(),
+  password: Joi.string().min(6).max(12).required()
 });
 
 const schemas = {
   registerSchema,
-  loginSchema,
+  loginSchema
 };
 
 module.exports = {
   User,
-  schemas,
+  schemas
 };
