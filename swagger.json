@@ -451,6 +451,11 @@
           "user": {
             "type": "object",
             "properties": {
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "username"
+              },
               "email": {
                 "type": "string",
                 "description": "User's email",
@@ -460,12 +465,7 @@
               "balance": {
                 "type": "number",
                 "description": "User's balance",
-                "example": "100"
-              },
-              "name": {
-                "type": "string",
-                "description": "User's name",
-                "example": "username"
+                "example": 100
               }
             }
           }
@@ -478,7 +478,7 @@
           "date": {
             "type": "string",
             "description": "Transaction date",
-            "example": "18.08.2020"
+            "example": "13.12.2022"
           },
           "type": {
             "type": "Boolean",
@@ -508,7 +508,7 @@
           "date": {
             "type": "string",
             "description": "Transaction date",
-            "example": "18.08.2020"
+            "example": "13.12.2022"
           },
           "type": {
             "type": "Boolean",
@@ -533,12 +533,12 @@
           "year": {
             "type": "integer",
             "description": "Transaction year",
-            "example": "2020"
+            "example": 2022
           },
           "month": {
             "type": "integer",
             "description": "Transaction month",
-            "example": "08"
+            "example": 12
           },
           "owner": {
             "type": "string",
@@ -546,167 +546,182 @@
             "example": "638fd2a65f20c321fe050142"
           },
           "balance": {
-            "type": "integer",
+            "type": "number",
             "description": "User's balance after transaction",
             "example": 100
           }
         }
       },
       "TransactionsGetResponse": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "_id": {
-              "type": "string",
-              "description": "Transaction id",
-              "example": "63908e7006667ca937cc3ed6"
-            },
-            "date": {
-              "type": "string",
-              "description": "Transaction date",
-              "example": "18.08.2020"
-            },
-            "year": {
-              "type": "integer",
-              "description": "Transaction year",
-              "example": "2020"
-            },
-            "month": {
-              "type": "integer",
-              "description": "Transaction month",
-              "example": "08"
-            },
-            "type": {
-              "type": "Boolean",
-              "description": "Transaction type",
-              "example": false
-            },
-            "category": {
-              "type": "string",
-              "description": "Transaction category",
-              "example": "Education"
-            },
-            "comment": {
-              "type": "string",
-              "description": "User comment for transaction",
-              "example": "books "
-            },
-            "sum": {
-              "type": "number",
-              "description": "Transaction sum",
-              "example": 150
-            },
-            "balance": {
-              "type": "number",
-              "description": "User's balance",
-              "example": 100
-            },
-            "owner": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "Current page",
+            "example": "1"
+          },
+          "totalPages": {
+            "type": "integer",
+            "description": "Total pages",
+            "example": "23"
+          },
+          "result": {
+            "type": "array",
+            "items": {
               "type": "object",
               "properties": {
                 "_id": {
                   "type": "string",
-                  "description": "User id",
-                  "example": "638fd2a65f20c321fe050142"
+                  "description": "Transaction id",
+                  "example": "63985c74cada9a2e5c60907b"
                 },
-                "name": {
+                "date": {
                   "type": "string",
-                  "description": "User name",
-                  "example": "username"
+                  "description": "Transaction date",
+                  "example": "13.12.2022"
                 },
-                "email": {
+                "month": {
+                  "type": "integer",
+                  "description": "Transaction month",
+                  "example": 12
+                },
+                "year": {
+                  "type": "integer",
+                  "description": "Transaction year",
+                  "example": "2022"
+                },
+                "type": {
+                  "type": "Boolean",
+                  "description": "Transaction type",
+                  "example": false
+                },
+                "category": {
                   "type": "string",
-                  "description": "User email",
-                  "format": "email",
-                  "example": "o1@gmail.com"
+                  "description": "Transaction category",
+                  "example": "Education"
+                },
+                "comment": {
+                  "type": "string",
+                  "description": "User comment for transaction",
+                  "example": "books "
+                },
+                "sum": {
+                  "type": "number",
+                  "description": "Transaction sum",
+                  "example": 150
+                },
+                "balance": {
+                  "type": "number",
+                  "description": "User's balance",
+                  "example": 100
+                },
+                "owner": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "description": "User id",
+                      "example": "638fd2a65f20c321fe050142"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "User name",
+                      "example": "username"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "User email",
+                      "format": "email",
+                      "example": "o1@gmail.com"
+                    }
+                  }
                 }
               }
-            }
+            },
+            "example": [
+              {
+                "_id": "63985c74cada9a2e5c60907b",
+                "date": "13.12.2022",
+                "month": 12,
+                "year": 2022,
+                "type": false,
+                "category": "Education",
+                "comment": "books",
+                "sum": 150,
+                "balance": 100,
+                "owner": {
+                  "_id": "638fd2a65f20c321fe050142",
+                  "name": "username",
+                  "email": "o1@gmail.com"
+                }
+              },
+              {
+                "_id": "63985c27cada9a2e5c609072",
+                "date": "13.12.2022",
+                "month": 12,
+                "year": 2022,
+                "type": true,
+                "category": "Income",
+                "comment": "ttt",
+                "sum": 200.85,
+                "balance": 250,
+                "owner": {
+                  "_id": "638fd2a65f20c321fe050142",
+                  "name": "username",
+                  "email": "o1@gmail.com"
+                }
+              },
+              {
+                "_id": "63985bc0cada9a2e5c609069",
+                "date": "13.12.2022",
+                "month": 12,
+                "year": 2022,
+                "type": false,
+                "category": "Self care",
+                "comment": "ass",
+                "sum": 200.85,
+                "balance": 49.15,
+                "owner": {
+                  "_id": "638fd2a65f20c321fe050142",
+                  "name": "username",
+                  "email": "o1@gmail.com"
+                }
+              },
+              {
+                "_id": "63985b73cada9a2e5c609060",
+                "date": "13.12.2022",
+                "month": 12,
+                "year": 2022,
+                "type": false,
+                "category": "Self care",
+                "comment": "ass",
+                "sum": 99.85,
+                "balance": 250,
+                "owner": {
+                  "_id": "638fd2a65f20c321fe050142",
+                  "name": "username",
+                  "email": "o1@gmail.com"
+                }
+              },
+              {
+                "_id": "63985b4bcada9a2e5c609057",
+                "date": "13.12.2022",
+                "month": 12,
+                "year": 2022,
+                "type": false,
+                "category": "Self care",
+                "comment": "ass",
+                "sum": 100.15,
+                "balance": 349.85,
+                "owner": {
+                  "_id": "638fd2a65f20c321fe050142",
+                  "name": "username",
+                  "email": "o1@gmail.com"
+                }
+              }
+            ]
           }
-        },
-        "example": [
-          {
-            "_id": "63908e7006667ca937cc3ed6",
-            "date": "18.08.2020",
-            "month": 8,
-            "year": 2020,
-            "type": false,
-            "category": "Education",
-            "comment": "books",
-            "sum": 150,
-            "balance": 100,
-            "owner": {
-              "_id": "638fd2a65f20c321fe050142",
-              "name": "username",
-              "email": "o1@gmail.com"
-            }
-          },
-          {
-            "_id": "63908df106667ca937cc3ec7",
-            "date": "15.08.2020",
-            "month": 8,
-            "year": 2020,
-            "type": true,
-            "category": "Income",
-            "comment": "my balance",
-            "sum": 250,
-            "balance": 250,
-            "owner": {
-              "_id": "638fd2a65f20c321fe050142",
-              "name": "username",
-              "email": "o1@gmail.com"
-            }
-          },
-          {
-            "_id": "63908db006667ca937cc3ec2",
-            "date": "10.08.2020",
-            "month": 8,
-            "year": 2020,
-            "type": false,
-            "category": "Child care",
-            "comment": "toys",
-            "sum": 150,
-            "balance": 0,
-            "owner": {
-              "_id": "638fd2a65f20c321fe050142",
-              "name": "username",
-              "email": "o1@gmail.com"
-            }
-          },
-          {
-            "_id": "63908d5006667ca937cc3ebd",
-            "date": "30.07.2020",
-            "month": 7,
-            "year": 2020,
-            "type": false,
-            "category": "Car",
-            "comment": "car wash",
-            "sum": 100,
-            "balance": 150,
-            "owner": {
-              "_id": "638fd2a65f20c321fe050142",
-              "name": "username",
-              "email": "o1@gmail.com"
-            }
-          },
-          {
-            "_id": "63908ce506667ca937cc3eb8",
-            "date": "28.07.2020",
-            "month": 7,
-            "year": 2020,
-            "type": false,
-            "category": "Products",
-            "comment": "fish",
-            "sum": 50,
-            "balance": 250,
-            "owner": {
-              "_id": "638fd2a65f20c321fe050142",
-              "name": "username",
-              "email": "o1@gmail.com"
-            }
-          }
-        ]
+        }
       },
       "CategoriesResponse": {
         "type": "array",
@@ -735,7 +750,12 @@
           { "id": "2", "name": "Products", "color": "#FFD8D0" },
           { "id": "3", "name": "Car", "color": "#FD9498" },
           { "id": "4", "name": "Self care", "color": "#C5BAFF" },
-          { "id": "5", "name": "Child care", "color": "#6E78E8" }
+          { "id": "5", "name": "Child care", "color": "#6E78E8" },
+          { "id": "6", "name": "Household products", "color": "#4A56E2" },
+          { "id": "7", "name": "Education", "color": "#81E1FF" },
+          { "id": "8", "name": "Leisure", "color": "#24CCA7" },
+          { "id": "9", "name": "Other expenses", "color": "#00AD84" },
+          { "id": "10", "name": "Entertainment", "color": "#128f74" }
         ]
       },
       "GetStatisticRequest": {
@@ -745,12 +765,12 @@
           "month": {
             "type": "integer",
             "description": "Transaction month",
-            "example": 8
+            "example": 12
           },
           "year": {
             "type": "integer",
             "description": "Transaction year",
-            "example": 2020
+            "example": 2022
           }
         }
       },
@@ -765,12 +785,12 @@
           "totalIncome": {
             "type": "number",
             "description": "Income for the month",
-            "example": "3439.78"
+            "example": "1751"
           },
           "totalExpense": {
             "type": "number",
             "description": "Expense for the month ",
-            "example": "402695.6"
+            "example": "1751"
           },
           "totalCategories": {
             "type": "array",
@@ -785,7 +805,7 @@
                 "totalSum": {
                   "type": "number",
                   "description": "amount by category ",
-                  "example": "110"
+                  "example": "351.15"
                 }
               }
             }
