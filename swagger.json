@@ -372,26 +372,26 @@
           "user": {
             "type": "object",
             "properties": {
-              "email": {
+              "id": {
                 "type": "string",
-                "description": "User's email",
-                "format": "email",
-                "example": "o1@gmail.com"
+                "description": "User's id",
+                "example": "638fd2a65f20c321fe050142"
               },
               "name": {
                 "type": "string",
                 "description": "User's name",
                 "example": "username"
               },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email",
+                "example": "o1@gmail.com"
+              },
               "balance": {
                 "type": "number",
                 "description": "User's balance",
                 "example": 0
-              },
-              "id": {
-                "type": "string",
-                "description": "User's id",
-                "example": "638fd2a65f20c321fe050142"
               }
             }
           }
@@ -425,11 +425,6 @@
           "user": {
             "type": "object",
             "properties": {
-              "balance": {
-                "type": "number",
-                "description": "User's balance",
-                "example": 100
-              },
               "name": {
                 "type": "string",
                 "description": "User's name",
@@ -440,6 +435,11 @@
                 "description": "User's email",
                 "format": "email",
                 "example": "o1@gmail.com"
+              },
+              "balance": {
+                "type": "number",
+                "description": "User's balance",
+                "example": 250
               }
             }
           }
@@ -465,7 +465,7 @@
               "balance": {
                 "type": "number",
                 "description": "User's balance",
-                "example": 100
+                "example": 250
               }
             }
           }
@@ -548,7 +548,7 @@
           "balance": {
             "type": "number",
             "description": "User's balance after transaction",
-            "example": 100
+            "example": 250
           }
         }
       },
@@ -563,7 +563,7 @@
           "totalPages": {
             "type": "integer",
             "description": "Total pages",
-            "example": "23"
+            "example": "25"
           },
           "result": {
             "type": "array",
@@ -573,7 +573,7 @@
                 "_id": {
                   "type": "string",
                   "description": "Transaction id",
-                  "example": "63985c74cada9a2e5c60907b"
+                  "example": "63988090ff594212e28d48a1"
                 },
                 "date": {
                   "type": "string",
@@ -613,7 +613,7 @@
                 "balance": {
                   "type": "number",
                   "description": "User's balance",
-                  "example": 100
+                  "example": 250
                 },
                 "owner": {
                   "type": "object",
@@ -640,7 +640,7 @@
             },
             "example": [
               {
-                "_id": "63985c74cada9a2e5c60907b",
+                "_id": "63988090ff594212e28d48a1",
                 "date": "13.12.2022",
                 "month": 12,
                 "year": 2022,
@@ -648,7 +648,7 @@
                 "category": "Education",
                 "comment": "books",
                 "sum": 150,
-                "balance": 100,
+                "balance": 250,
                 "owner": {
                   "_id": "638fd2a65f20c321fe050142",
                   "name": "username",
@@ -656,15 +656,31 @@
                 }
               },
               {
-                "_id": "63985c27cada9a2e5c609072",
+                "_id": "6398806fff594212e28d489c",
+                "date": "13.12.2022",
+                "month": 12,
+                "year": 2022,
+                "type": false,
+                "category": "Household products",
+                "comment": "washing powder",
+                "sum": 348,
+                "balance": 400,
+                "owner": {
+                  "_id": "638fd2a65f20c321fe050142",
+                  "name": "username",
+                  "email": "o1@gmail.com"
+                }
+              },
+              {
+                "_id": "63987fa7ff594212e28d4897",
                 "date": "13.12.2022",
                 "month": 12,
                 "year": 2022,
                 "type": true,
                 "category": "Income",
-                "comment": "ttt",
-                "sum": 200.85,
-                "balance": 250,
+                "comment": "my balance",
+                "sum": 200,
+                "balance": 748,
                 "owner": {
                   "_id": "638fd2a65f20c321fe050142",
                   "name": "username",
@@ -672,15 +688,15 @@
                 }
               },
               {
-                "_id": "63985bc0cada9a2e5c609069",
+                "_id": "63987f35ff594212e28d4892",
                 "date": "13.12.2022",
                 "month": 12,
                 "year": 2022,
                 "type": false,
-                "category": "Self care",
-                "comment": "ass",
-                "sum": 200.85,
-                "balance": 49.15,
+                "category": "Household products",
+                "comment": "glue",
+                "sum": 150.97,
+                "balance": 548,
                 "owner": {
                   "_id": "638fd2a65f20c321fe050142",
                   "name": "username",
@@ -688,31 +704,15 @@
                 }
               },
               {
-                "_id": "63985b73cada9a2e5c609060",
+                "_id": "63987ef1ff594212e28d488d",
                 "date": "13.12.2022",
                 "month": 12,
                 "year": 2022,
                 "type": false,
-                "category": "Self care",
-                "comment": "ass",
-                "sum": 99.85,
-                "balance": 250,
-                "owner": {
-                  "_id": "638fd2a65f20c321fe050142",
-                  "name": "username",
-                  "email": "o1@gmail.com"
-                }
-              },
-              {
-                "_id": "63985b4bcada9a2e5c609057",
-                "date": "13.12.2022",
-                "month": 12,
-                "year": 2022,
-                "type": false,
-                "category": "Self care",
-                "comment": "ass",
-                "sum": 100.15,
-                "balance": 349.85,
+                "category": "Car",
+                "comment": "car wash",
+                "sum": 450,
+                "balance": 698.97,
                 "owner": {
                   "_id": "638fd2a65f20c321fe050142",
                   "name": "username",
@@ -785,12 +785,12 @@
           "totalIncome": {
             "type": "number",
             "description": "Income for the month",
-            "example": "1751"
+            "example": "3751"
           },
           "totalExpense": {
             "type": "number",
             "description": "Expense for the month ",
-            "example": "1751"
+            "example": "3451"
           },
           "totalCategories": {
             "type": "array",
@@ -800,15 +800,41 @@
                 "_id": {
                   "type": "string",
                   "description": "Category name",
-                  "example": "Leisure"
+                  "example": "Education"
                 },
                 "totalSum": {
                   "type": "number",
                   "description": "amount by category ",
-                  "example": "351.15"
+                  "example": "900.45"
                 }
               }
-            }
+            },
+            "example": [
+              {
+                "_id": "Education",
+                "totalSum": 900.45
+              },
+              {
+                "_id": "Leisure",
+                "totalSum": 351.15
+              },
+              {
+                "_id": "Child care",
+                "totalSum": 699
+              },
+              {
+                "_id": "Self care",
+                "totalSum": 400.85
+              },
+              {
+                "_id": "Household products",
+                "totalSum": 649.55
+              },
+              {
+                "_id": "Car",
+                "totalSum": 450
+              }
+            ]
           }
         }
       }
